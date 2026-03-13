@@ -1,4 +1,4 @@
-console.log("Main JS is working");
+
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 
