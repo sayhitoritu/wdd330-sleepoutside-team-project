@@ -51,8 +51,8 @@ p {
 }
 
 .logo img {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: auto;
 }
 
 .logo a {
@@ -85,12 +85,11 @@ p {
 }
 
 .logo--square img {
-  width: 90px;
-  height: 90px;
-  margin-top: -1.3em;
+  width: 60px;
+  height: auto;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
