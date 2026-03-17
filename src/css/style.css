@@ -260,3 +260,21 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px 0;
+}
+
+.categories a {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.categories img {
+  width: 80px;
+  margin-bottom: 10px;
+}
