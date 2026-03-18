@@ -2,8 +2,8 @@ import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 
 // Get category from URL
-const params = new URLSearchParams(window.location.search);
-const category = params.get("category");
+const productList = new ProductList(category, ".product-list");
+productList.init();
 
 console.log("Category:", category);
 
