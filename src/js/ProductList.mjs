@@ -1,3 +1,5 @@
+import { renderListWithTemplate } from "./utils.mjs";
+
 function productCardTemplate(product) {
   return `
   <li class="product-card">
@@ -28,4 +30,11 @@ export default class ProductList {
     const htmlStrings = list.map(productCardTemplate);
     this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
   }
+  renderList(list) {
+  renderListWithTemplate(
+    productCardTemplate,
+    this.listElement,
+    list
+  );
+}
 }
