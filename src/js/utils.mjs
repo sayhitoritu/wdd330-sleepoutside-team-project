@@ -28,3 +28,10 @@ const urlParams = new URLSearchParams(queryString);
 return urlParams.get(param);
 }
 
+
+export function renderListWithTemplate(list, templateFn, parentElement, position = "afterbegin", clear = false) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+}
+
