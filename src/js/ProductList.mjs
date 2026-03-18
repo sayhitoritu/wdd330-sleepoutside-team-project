@@ -20,12 +20,13 @@ export default class ProductList {
 
   async init() {
     const list = await this.dataSource.getData();
+    console.log("DATA:", list); //
     const limitedList = list.slice(0, 4);
     this.renderList(limitedList);
   }
 
   renderList(list) {
     const htmlStrings = list.map(productCardTemplate);
-    this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+    this.listElement.innerHTML = htmlStrings.join(""); //
   }
 }
