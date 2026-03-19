@@ -29,9 +29,12 @@ return urlParams.get(param);
 }
 
 
-export function renderListWithTemplate(list, templateFn, parentElement, position = "afterbegin", clear = false) {
-  if (clear) {
-    parentElement.innerHTML = "";
+export function renderWithTemplate(template, parentElement, data, callback) {
+  const htmlString = template(data);
+  parentElement.insertAdjacentHTML("beforeend", htmlString);
+
+  if (typeof callback === "function") {
+    callback(data);
   }
 }
 
