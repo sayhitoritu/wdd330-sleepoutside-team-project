@@ -1,24 +1,57 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
+import { getParam } from "./utils.mjs"; 
 
-const dataSource = new ProductData("tents");
 const element = document.querySelector(".product-list");
+const dataSource = new ProductData("tents");
 
-const productList = new ProductList("tents", dataSource, element);
-productList.init();
+// Get the search term from the URL 
+const searchTerm = getParam("search")?.toLowerCase() || "";
 
-// Product Search Feature
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("searchInput");
+// Function to render products 
+async function renderProducts() {
+  try {
+    const allProducts = await dataSource.getData();
 
-  searchInput.addEventListener("keyup", function () {
-    const searchValue = searchInput.value.toLowerCase();
-    const products = document.querySelectorAll(".product-list li");
+    // Filter products if searchTerm exists 
+    const filtered = searchTerm
+      ? allProducts.filter(
+          (p) =>
+            p.Name.toLowerCase().includes(searchTerm) ||
+            p.NameWithoutBrand.toLowerCase().includes(searchTerm)
+        )
+      : allProducts;
 
-    products.forEach((product) => {
-      const text = product.textContent.toLowerCase();
+    if (!filtered.length) {
+      element.innerHTML = "<p>No products found.</p>";
+      return;
+    }
 
-      product.style.display = text.includes(searchValue) ? "" : "none";
-    });
+    // Use ProductList to render filtered products 
+    const productList = new ProductList("tents", { getData: async () => filtered }, element);
+    productList.init();
+  } catch (err) {
+    console.error("Error loading products:", err);
+    element.innerHTML = "<p>Sorry, something went wrong.</p>";
+  }
+}
+
+// Run the function
+renderProducts();
+
+// Search Form Redirect 
+const form = document.getElementById("searchForm");
+
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const searchInput = document
+      .getElementById("searchInput")
+      .value.trim();
+
+    if (searchInput) {
+      window.location.href = `/product_pages/index.html?search=${searchInput}`;
+    }
   });
-});
+}

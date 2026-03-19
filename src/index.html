@@ -63,7 +63,11 @@
       <section class="products">
         <h2>Top Products</h2>
         <!-- Search Box -->
-        <input type="text" id="searchInput" placeholder="Search products..." />
+        <form id="searchForm">
+          <input type="text" id="searchInput" placeholder="Search products..." required />
+          <button type="submit">Search</button>
+        </form>
+        
         <ul class="product-list"></ul>
       </section>
       <script type="module" src="./js/main.js"></script>
