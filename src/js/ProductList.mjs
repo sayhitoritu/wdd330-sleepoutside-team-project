@@ -27,8 +27,10 @@ export default class ProductList {
   }
 
   renderList(list) {
-    const htmlStrings = list.map(productCardTemplate);
-    this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+    this.listElement.innerHTML = "";
+    list.forEach((product) => {
+      renderWithTemplate(productCardTemplate, this.listElement, product, () => {});
+    });
   }
   renderList(list) {
   renderListWithTemplate(
