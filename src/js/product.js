@@ -6,7 +6,8 @@ const productId = getParam("product");
 
 async function initProduct() {
   const product = await dataSource.findProductById(productId);
-  console.log(product);
+  //console.log(product);
+  return product;
 }
 
 initProduct();
@@ -24,5 +25,3 @@ async function addToCartHandler(e) {
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
-
-

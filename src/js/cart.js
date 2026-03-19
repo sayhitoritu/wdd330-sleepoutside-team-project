@@ -7,7 +7,9 @@ function renderCartContents() {
     return;
   }
 
-  const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
+  const htmlItems = cartItems.map((item, index) =>
+    cartItemTemplate(item, index),
+  );
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
