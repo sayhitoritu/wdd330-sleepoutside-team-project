@@ -2,6 +2,7 @@ import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import { getParam } from "./utils.mjs"; 
 
+// Select element
 const element = document.querySelector(".product-list");
 const dataSource = new ProductData("tents");
 
@@ -36,6 +37,18 @@ async function renderProducts() {
   }
 }
 
+// Use tents category
+const dataSource = new ProductData("tents");
+
+// Create product list
+const productList = new ProductList("tents", dataSource, element);
+
+// Initialize
+productList.init();
+
+if (window.location.pathname.includes("cart")) {
+    import("./cart.js");
+}
 // Run the function
 renderProducts();
 
