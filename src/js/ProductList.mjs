@@ -8,6 +8,7 @@ function getProductPage(id) {
   };
   return map[id] || "#";
 }
+import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
   return `
@@ -38,5 +39,16 @@ export default class ProductList {
   renderList(list) {
     const htmlStrings = list.map(productCardTemplate);
     this.listElement.innerHTML = htmlStrings.join("");
+    this.listElement.innerHTML = "";
+    list.forEach((product) => {
+      renderWithTemplate(productCardTemplate, this.listElement, product, () => {});
+    });
   }
+  renderList(list) {
+  renderListWithTemplate(
+    productCardTemplate,
+    this.listElement,
+    list
+  );
+}
 }
