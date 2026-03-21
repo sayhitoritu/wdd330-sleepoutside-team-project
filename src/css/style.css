@@ -283,3 +283,30 @@ footer {
 .categories a h2 {
   margin-top: 10px;
 }
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.product-list img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+}
+
+.product-card img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+}
+
+.product-list li {
+  text-align: center;
+}

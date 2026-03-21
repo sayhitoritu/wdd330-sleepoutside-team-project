@@ -12,3 +12,7 @@ const productList = new ProductList("tents", dataSource, element);
 
 // Initialize
 productList.init();
+
+if (window.location.pathname.includes("cart")) {
+    import("./cart.js");
+}
