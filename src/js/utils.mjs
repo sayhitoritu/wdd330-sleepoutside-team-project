@@ -28,13 +28,17 @@ const urlParams = new URLSearchParams(queryString);
 return urlParams.get(param);
 }
 
-
-export function renderWithTemplate(template, parentElement, data, callback) {
-  const htmlString = template(data);
-  parentElement.insertAdjacentHTML("beforeend", htmlString);
-
-  if (typeof callback === "function") {
-    callback(data);
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  if (clear) {
+    parentElement.innerHTML = "";
   }
-}
 
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}

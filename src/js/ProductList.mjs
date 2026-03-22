@@ -1,10 +1,21 @@
-import { renderWithTemplate } from "./utils.mjs";
+import ProductData from "./ProductData.mjs";
+import ProductList from "./ProductList.mjs";
 
+function getProductPage(id) {
+  const map = {
+    "880RR": "marmot-ajax-3.html",
+    "985RF": "northface-talus-4.html",
+    "344YF": "cedar-ridge-rimrock-2.html",
+    "985RH": "northface-alpine-3.html"
+  };
+  return map[id] || "#";
+}
+import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
   return `
   <li class="product-card">
-    <a href="/product_pages/index.html?product=${product.Id}">
+    <a href="/product_pages/${getProductPage(product.Id)}">
       <img src="${product.Image.replace('../', '/')}" alt="${product.NameWithoutBrand}" />
       <h3>${product.NameWithoutBrand}</h3>
       <p class="product-card__brand">${product.Brand.Name}</p>
@@ -28,9 +39,18 @@ export default class ProductList {
   }
 
   renderList(list) {
+    const htmlStrings = list.map(productCardTemplate);
+    this.listElement.innerHTML = htmlStrings.join("");
     this.listElement.innerHTML = "";
     list.forEach((product) => {
       renderWithTemplate(productCardTemplate, this.listElement, product, () => {});
     });
   }
+  renderList(list) {
+  renderListWithTemplate(
+    productCardTemplate,
+    this.listElement,
+    list
+  );
+}
 }
