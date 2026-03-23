@@ -1,4 +1,3 @@
-
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 
@@ -11,6 +10,7 @@ if (params.has("category")) {
 }
 
 const dataSource = new ProductData(category);
+const searchInput = document.getElementById("searchInput");
 const element = document.querySelector(".product-list");
 
 if (element) {
@@ -36,11 +36,12 @@ function removeFromCompare(productId) {
 function renderComparisonPanel() {
   const panel = document.getElementById("comparisonPanel");
   const button = document.getElementById("compareButton");
+  if (!panel) return;
   const removeButtons = panel.querySelectorAll(".remove-compare");
   removeButtons.forEach(btn => btn.removeEventListener("click", handleRemoveCompare));
   if (comparedProducts.length === 0) {
     panel.innerHTML = "<p>No products selected for comparison.</p>";
-    button.disabled = true;
+    if (button) button.disabled = true;
     return;
   }
 
