@@ -19,6 +19,7 @@ function addToCompare(product) {
     renderComparisonPanel();
   }
 }
+window.addToCompare = addToCompare;
 
 function removeFromCompare(productId) {
   comparedProducts = comparedProducts.filter(p => p.Id !== productId);
