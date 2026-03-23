@@ -14,7 +14,7 @@ productList.init();
 let comparedProducts = [];
 
 function addToCompare(product) {
-  if ( comparedProducts.length < 2 && !comparedProducts.find(p => p.Id === product.Id)) {
+  if (!comparedProducts.find(p => p.Id === product.Id)) {
     comparedProducts.push(product);
     renderComparisonPanel();
   }
