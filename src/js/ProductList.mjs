@@ -20,7 +20,10 @@ function productCardTemplate(product) {
       <p class="product-card__brand">${product.Brand.Name}</p>
       <p class="product-card__price">$${product.FinalPrice}</p>
     </a>
-    <button class="compare-button" data-id="${product.Id}">Compare</button>
+    <div class="product-card__actions">
+      <button class="cart-button" data-id="${product.Id}">Add to Cart</button>
+      <button class="compare-button" data-id="${product.Id}">Compare</button>
+    </div>
   </li>
   `;
 }
@@ -62,6 +65,17 @@ export default class ProductList {
         const product = list.find(p => p.Id == id);
         if (product) {
           window.addToCompare(product);
+        }
+      });
+    });
+    // Add event listeners for cart buttons
+    this.listElement.querySelectorAll(".cart-button").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = btn.getAttribute("data-id");
+        const product = list.find(p => p.Id == id);
+        if (product) {
+          // Placeholder: implement add to cart logic here
+          alert(`${product.NameWithoutBrand} added to cart!`);
         }
       });
     });
