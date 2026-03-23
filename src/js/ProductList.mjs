@@ -48,18 +48,23 @@ export default class ProductList {
     });
   }
   renderList(list) {
-  renderListWithTemplate(
-    productCardTemplate,
-    this.listElement,
-    list
-  );
+    renderListWithTemplate(
+      productCardTemplate,
+      this.listElement,
+      list,
+      "afterbegin",
+      true
+    );
 
-  // Add event listeners for compare buttons
-  list.forEach(product => {
-    const btn = this.listElement.querySelector(`.compare-button[data-id="${product.Id}"]`);
-    if (btn) {
-      btn.addEventListener("click", () => addToCompare(product));
-    }
-  });
-}
+    // Add event listeners for compare buttons
+    this.listElement.querySelectorAll(".compare-button").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = btn.getAttribute("data-id");
+        const product = list.find(p => p.Id == id);
+        if (product) {
+          window.addToCompare(product);
+        }
+      });
+    });
+  }
 }
