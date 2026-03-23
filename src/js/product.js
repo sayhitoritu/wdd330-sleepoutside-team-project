@@ -42,6 +42,17 @@ async function addToCartHandler(e) {
 }
 
 // add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler);
+
+document.getElementById("addToCart")?.addEventListener("click", addToCartHandler);
+
+// Add to Compare button logic
+document.getElementById("addToCompare")?.addEventListener("click", async (e) => {
+  const id = e.target.dataset.id;
+  const product = await dataSource.findProductById(id);
+  if (window.addToCompare) {
+    window.addToCompare(product);
+    alert("Product added to compare ✅");
+  } else {
+    alert("Compare feature not available on this page.");
+  }
+});
