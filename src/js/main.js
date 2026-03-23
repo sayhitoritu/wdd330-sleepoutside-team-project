@@ -1,4 +1,6 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import ProductData from "./ProductData.mjs";
+import ProductList from "./ProductList.mjs";
 // Global addToCart function for product listing
 window.addToCart = async function(id) {
 	const dataSource = new ProductData("tents");
@@ -18,8 +20,7 @@ window.addToCart = async function(id) {
 	setLocalStorage("so-cart", cartItems);
 	alert("Product added to cart ✅");
 };
-import ProductData from "./ProductData.mjs";
-import ProductList from "./ProductList.mjs";
+
 
 const element = document.querySelector(".product-list");
 const searchInput = document.getElementById("searchInput");

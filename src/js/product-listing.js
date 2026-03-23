@@ -2,6 +2,7 @@ import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 
 
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 // Always default to 'tents' if no category param or if data file is missing
 let category = "tents";
 const params = new URLSearchParams(window.location.search);
@@ -9,13 +10,25 @@ if (params.has("category")) {
   category = params.get("category");
 }
 
-function addToCart(id) {
-  
-}
+window.addToCart = async function(id) {
+  let cartItems = getLocalStorage("so-cart") || [];
+  // Find the product by id using ProductData
+  const dataSource = new ProductData(category);
+  const product = await dataSource.findProductById(id);
+  if (!product) {
+    alert("Product not found!");
+    return;
+  }
+  setLocalStorage("so-cart", cartItems);
+
+};
+
+
 
 const dataSource = new ProductData(category);
 const searchInput = document.getElementById("searchInput");
 const element = document.querySelector(".product-list");
+  alert("Product added to cart ✅");
 
 if (element) {
   const productList = new ProductList(category, dataSource, element);
