@@ -21,6 +21,7 @@ function productCardTemplate(product) {
       <p class="product-card__brand">${product.Brand.Name}</p>
       <p class="product-card__price">$${product.FinalPrice}</p>
     </a>
+    <button class="compare-button" data-id="${product.Id}">Compare</button>
   </li>
   `;
 }
@@ -52,5 +53,13 @@ export default class ProductList {
     this.listElement,
     list
   );
+
+  // Add event listeners for compare buttons
+  list.forEach(product => {
+    const btn = this.listElement.querySelector(`.compare-button[data-id="${product.Id}"]`);
+    if (btn) {
+      btn.addEventListener("click", () => addToCompare(product));
+    }
+  });
 }
 }
