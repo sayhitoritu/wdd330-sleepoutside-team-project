@@ -2,14 +2,21 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 
+
+// Always default to 'tents' if no category param or if data file is missing
+let category = "tents";
 const params = new URLSearchParams(window.location.search);
-const category = params.get("category") || "tents";
+if (params.has("category")) {
+  category = params.get("category");
+}
 
 const dataSource = new ProductData(category);
 const element = document.querySelector(".product-list");
 
-const productList = new ProductList(category, dataSource, element);
-productList.init();
+if (element) {
+  const productList = new ProductList(category, dataSource, element);
+  productList.init();
+}
 
 let comparedProducts = [];
 
