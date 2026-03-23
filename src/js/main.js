@@ -1,3 +1,23 @@
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+// Global addToCart function for product listing
+window.addToCart = async function(id) {
+	const dataSource = new ProductData("tents");
+	const product = await dataSource.findProductById(id);
+	if (!product) {
+		alert("Product not found!");
+		return;
+	}
+	let cartItems = getLocalStorage("so-cart") || [];
+	const existing = cartItems.find(item => item.Id === product.Id);
+	if (existing) {
+		existing.quantity = (existing.quantity || 1) + 1;
+	} else {
+		product.quantity = 1;
+		cartItems.push(product);
+	}
+	setLocalStorage("so-cart", cartItems);
+	alert("Product added to cart ✅");
+};
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 

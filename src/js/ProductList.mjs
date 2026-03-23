@@ -58,6 +58,22 @@ export default class ProductList {
       true
     );
 
+    document.querySelectorAll(".cart-button").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = btn.dataset.id;
+        //Call your addToCart function
+        addToCart(id);
+      });
+    });
+
+    document.querySelectorAll(".compare-button").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = btn.dataset.id;
+        // Call your addToCompare function
+        addToCompare(id);
+      });
+    });
+
     // Add event listeners for compare buttons
     this.listElement.querySelectorAll(".compare-button").forEach(btn => {
       btn.addEventListener("click", (e) => {

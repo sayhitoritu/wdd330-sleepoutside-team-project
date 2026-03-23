@@ -9,6 +9,10 @@ if (params.has("category")) {
   category = params.get("category");
 }
 
+function addToCart(id) {
+  
+}
+
 const dataSource = new ProductData(category);
 const searchInput = document.getElementById("searchInput");
 const element = document.querySelector(".product-list");
