@@ -1,14 +1,22 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 
-// select element
 const element = document.querySelector(".product-list");
+const searchInput = document.getElementById("searchInput");
 
-// create data source
 const dataSource = new ProductData("tents");
-
-// create product list
 const productList = new ProductList("tents", dataSource, element);
 
-// initialize
 productList.init();
+
+if (searchInput) {
+	searchInput.addEventListener("keyup", () => {
+		const searchValue = searchInput.value.toLowerCase();
+		const products = document.querySelectorAll(".product-list li");
+
+		products.forEach((product) => {
+			const text = product.textContent.toLowerCase();
+			product.style.display = text.includes(searchValue) ? "" : "none";
+		});
+	});
+}
