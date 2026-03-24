@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sleep Outside | Home</title>
   <link rel="stylesheet" href="../css/style.css" />
-  <script type="module" crossorigin src="/assets/main-BiNbm8iI.js"></script>
+  <!-- Remove old prebuilt JS bundle and load compare logic directly -->
+  <script type="module" src="src/js/product-listing.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/assets/ProductData-Dx0C3TkS.js">
 </head>
@@ -61,13 +62,17 @@
       <!-- Search Box -->
       <input type="text" id="searchInput" placeholder="Search products..." />
       <ul class="product-list"></ul>
-
+      <button id="compareButton" disabled>Compare</button>
+      <div id="comparisonPanel" class="comparison-panel">
+        <p>No products selected for comparison.</p>
+      </div>
     </section>
   </main>
   <footer>
     &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway
     Worldwide Online
   </footer>
+  <script type="module" src="src/js/product-listing.js"></script>
 </body>
 
 </html>
