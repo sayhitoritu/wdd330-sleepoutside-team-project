@@ -1,21 +1,11 @@
-import { setLocalStorage, getParam } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, getParam } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 
 const dataSource = new ProductData("tents");
-const productId = getParam("product");
-
-async function initProduct() {
-  const product = await dataSource.findProductById(productId);
-  //console.log(product);
-  return product;
-}
-
-initProduct();
 
 function addProductToCart(product) {
   let cartItems = getLocalStorage("so-cart") || [];
 
-  // check if product already exists
   const existing = cartItems.find(item => item.Id === product.Id);
 
   if (existing) {
@@ -28,31 +18,18 @@ function addProductToCart(product) {
   setLocalStorage("so-cart", cartItems);
 
   alert("Product added to cart ✅");
-  setLocalStorage("so-cart", product);
 }
-// add to cart button event handler
+
 async function addToCartHandler(e) {
-  const id = e.target.dataset.id;
-  console.log("Clicked ID:", id); // ✅ check this
+  const id = e.currentTarget.dataset.id;
 
   const product = await dataSource.findProductById(id);
-  console.log("Product found:", product); // ✅ check this
 
   addProductToCart(product);
 }
 
-// add listener to Add to Cart button
+const btn = document.getElementById("addToCart");
 
-document.getElementById("addToCart")?.addEventListener("click", addToCartHandler);
-
-// Add to Compare button logic
-document.getElementById("addToCompare")?.addEventListener("click", async (e) => {
-  const id = e.target.dataset.id;
-  const product = await dataSource.findProductById(id);
-  if (window.addToCompare) {
-    window.addToCompare(product);
-    alert("Product added to compare ✅");
-  } else {
-    alert("Compare feature not available on this page.");
-  }
-});
+if (btn) {
+  btn.addEventListener("click", addToCartHandler);
+}
