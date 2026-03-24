@@ -23,9 +23,9 @@ export function setClick(selector, callback) {
 }
 
 export function getParam(param) {
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-return urlParams.get(param);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
 }
 
 export function renderListWithTemplate(
@@ -41,4 +41,17 @@ export function renderListWithTemplate(
 
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+export function alertMessage(message, scroll = true) {
+  const main = document.querySelector("main");
+
+  const div = document.createElement("div");
+  div.style.background = "red";
+  div.style.color = "white";
+  div.style.padding = "10px";
+  div.innerText = message;
+
+  main.prepend(div);
+
+  if (scroll) window.scrollTo(0, 0);
 }

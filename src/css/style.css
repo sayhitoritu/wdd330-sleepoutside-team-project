@@ -89,7 +89,7 @@ p {
   height: auto;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -309,4 +309,19 @@ footer {
 
 .product-list li {
   text-align: center;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.checkout-form input {
+  padding: 8px;
+}
+
+.checkout-form button {
+  padding: 10px;
 }
