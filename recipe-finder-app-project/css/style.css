@@ -1,0 +1,50 @@
+body {
+  font-family: Arial;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Search area */
+input {
+  padding: 8px;
+  width: 200px;
+}
+
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Recipe container */
+#results {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card */
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+}
+
+/* 📱 MOBILE DEFAULT */
+@media (max-width: 600px) {
+  #results {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 💻 DESKTOP */
+@media (min-width: 601px) {
+  #results {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
