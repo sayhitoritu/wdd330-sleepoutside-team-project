@@ -17,7 +17,6 @@ function addProductToCart(product) {
 
   setLocalStorage("so-cart", cartItems);
 
-  alert("Product added to cart ✅");
 }
 
 async function addToCartHandler(e) {
