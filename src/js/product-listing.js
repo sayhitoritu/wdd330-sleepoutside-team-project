@@ -10,26 +10,43 @@ if (params.has("category")) {
   category = params.get("category");
 }
 
-window.addToCart = async function(id) {
-  let cartItems = getLocalStorage("so-cart") || [];
-  // Find the product by id using ProductData
-  const dataSource = new ProductData(category);
-  const product = await dataSource.findProductById(id);
-  if (!product) {
-    alert("Product not found!");
-    return;
-  }
-  setLocalStorage("so-cart", cartItems);
+function addToCart(cart, item) {
+  // Check if item already exists in cart
+  const existingItem = cart.find(cartItem => cartItem.id === item.id);
 
-};
+  if (existingItem) {
+    // If found, increment its quantity
+    existingItem.quantity += 1;
+  } else {
+    // Otherwise, add it with quantity = 1
+    cart.push({ ...item, quantity: 1 });
+  }
+
+  return cart;
+}
+
+// Hook into Add to Cart buttons
+function handleAddToCart(item) {
+  let cart = getLocalStorage("so-cart") || [];
+  cart = addToCart(cart, item);
+  setLocalStorage("so-cart", cart);
+
+  // Example: update cart count badge
+  const cartCount = document.getElementById("cart-count");
+  if (cartCount) {
+    cartCount.textContent = cart.reduce((sum, p) => sum + p.quantity, 0);
+  }
+}
+
+// Expose function globally so ProductList can call it
+window.handleAddToCart = handleAddToCart;
 
 
 
 const dataSource = new ProductData(category);
 const searchInput = document.getElementById("searchInput");
 const element = document.querySelector(".product-list");
-  alert("Product added to cart ✅");
-
+  
 if (element) {
   const productList = new ProductList(category, dataSource, element);
   productList.init();
