@@ -91,7 +91,7 @@ export default class ProductList {
         const product = list.find(p => p.Id == id);
         if (product) {
           // Placeholder: implement add to cart logic here
-          alert(`${product.NameWithoutBrand} added to cart!`);
+          window.handleAddToCart(product);
         }
       });
     });

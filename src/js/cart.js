@@ -56,3 +56,11 @@ function updateQuantity(id, change) {
 }
 
 renderCartContents();
+
+const checkoutBtn = document.querySelector('#goToCheckout');
+
+if (checkoutBtn) {
+  checkoutBtn.addEventListener('click', () => {
+    window.location.href = '/checkout/index.html';
+  });
+}
