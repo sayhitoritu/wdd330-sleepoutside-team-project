@@ -240,6 +240,38 @@ button {
   grid-column: 3;
 }
 
+.faq {
+
+  max-width: 600px;
+  margin: 2rem auto;
+
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: #eee;
+  border: none;
+  padding: 1em;
+  font-size: 1.1em;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 0.2em;
+}
+
+.faq-answer {
+  display: none;
+  padding: 1em;
+  background: #f9f9f9;
+  border-left: 3px solid #00796b;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
