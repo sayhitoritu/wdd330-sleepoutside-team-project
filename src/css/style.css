@@ -240,11 +240,10 @@ button {
   grid-column: 3;
 }
 
-.faq {
 
+.faq {
   max-width: 600px;
   margin: 2rem auto;
-
 }
 
 .faq-question {
@@ -257,6 +256,7 @@ button {
   cursor: pointer;
   outline: none;
   margin-bottom: 0.2em;
+  color: yellow;
 }
 
 .faq-answer {
