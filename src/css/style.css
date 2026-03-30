@@ -256,7 +256,7 @@ button {
   cursor: pointer;
   outline: none;
   margin-bottom: 0.2em;
-  color: yellow;
+  color: var(--dark-grey);
 }
 
 .faq-answer {
