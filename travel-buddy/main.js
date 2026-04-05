@@ -80,10 +80,45 @@ function showCountryDetails(country) {
         <p><strong>Population:</strong> ${country.population}</p>
         <p><strong>Languages:</strong> ${country.languages ? Object.values(country.languages).join(', ') : 'N/A'}</p>
         <p><strong>Currencies:</strong> ${country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'N/A'}</p>
+        <div id="currencyExchange">Loading exchange rates...</div>
         <div id="countryImage"></div>
     `;
+
+    // Fetch exchange rates for this country's currencies
+    if (country.currencies) {
+        const currencyCodes = Object.keys(country.currencies);
+        fetchExchangeRates(currencyCodes);
+    }
+    
     fetchUnsplashImage(country.name.common);
 }
+
+
+// Fetch exchange rates from ExchangeRate API
+async function fetchExchangeRates(currencyCodes) {
+    const exchangeDiv = document.getElementById('currencyExchange');
+    try {
+        const rates = [];
+        for (const code of currencyCodes) {
+            const response = await fetch(`https://api.exchangerate.host/convert?from=USD&to=${code}&amount=1`);
+            const data = await response.json();
+
+            if (data.success) {
+                rates.push(`1 USD = ${data.result.toFixed(2)} ${code}`);
+            }
+        }
+
+        if (rates.length > 0) {
+            exchangeDiv.innerHTML = `<p><strong>Exchange Rates:</strong> ${rates.join(' | ')}</p>`;
+        } else {
+            exchangeDiv.innerHTML = `<p><em>Exchange rates unavailable.</em></p>`;
+        }
+    } catch (err) {
+        console.error('Exchange rate fetch failed:', err);
+        exchangeDiv.innerHTML = `<p><em>Could not load exchange rates.</em></p>`;
+    }
+}
+
 
 function fetchUnsplashImage(query) {
     const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=${UNSPLASH_ACCESS_KEY}&per_page=1`;
