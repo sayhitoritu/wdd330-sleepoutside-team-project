@@ -219,8 +219,13 @@ footer {
 }
 
 .logo--square {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   font-size: var(--small-font);
   width: 110px;
+  aspect-ratio: 1/1;
+  border-radius: 14px;
   height: 80px;
   display: flex;
   flex-direction: column;
@@ -232,7 +237,8 @@ footer {
 
 .logo--square img {
   width: 60px;
-  height: auto;
+  height: 68%;
+  
 }
 
 .logo--square>div {
