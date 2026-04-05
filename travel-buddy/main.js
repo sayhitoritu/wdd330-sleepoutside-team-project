@@ -97,7 +97,7 @@ function showCountryDetails(country) {
 async function fetchExchangeRates(currencyCodes) {
     const exchangeDiv = document.getElementById('currencyExchange');
 
-    if (!EXCHANGE_RATE_ACCESS_KEY || EXCHANGE_RATE_ACCESS_KEY === 'cur_live_wvALV4AslceDpzb1Xk0tFVyFS93w2nQ7LMBrroWJ') {
+    if (!EXCHANGE_RATE_ACCESS_KEY) {
         exchangeDiv.innerHTML = '<p><em>Add your currency API key in main.js to load exchange rates.</em></p>';
         return;
     }
