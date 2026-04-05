@@ -4,6 +4,11 @@ console.log("main.js loaded");
 const countryList = document.getElementById('countryList');
 const searchInput = document.getElementById('searchInput');
 const countryDetails = document.getElementById('countryDetails');
+const COUNTRIES_ENDPOINTS = [
+    'https://restcountries.com/v3.1/all?fields=name,flags,region,population,capital,languages,currencies',
+    'https://restcountries.com/v3.1/all',
+];
+
 
 // Unsplash API setup (replace with your own access key)
 const UNSPLASH_ACCESS_KEY = 'om4lLj7mQC2CUgG0a8hl8D49CUAvhVfWGaNqq5pwY5w'; // <-- Replace with your Unsplash Access Key
@@ -11,19 +16,28 @@ const UNSPLASH_ACCESS_KEY = 'om4lLj7mQC2CUgG0a8hl8D49CUAvhVfWGaNqq5pwY5w'; // <-
 // Fetch and display all countries on load
 let allCountries = [];
 countryList.innerHTML = '<li>Loading countries...</li>';
-fetch('https://restcountries.com/v3.1/all')
-    .then(res => {
-        if (!res.ok) throw new Error(`Countries request failed: ${res.status}`);
-        return res.json();
-    })
-    .then(data => {
-        allCountries = data;
-        displayCountries(data);
-    })
-    .catch(err => {
-        console.error(err);
-        countryList.innerHTML = '<li>Could not load countries. Please check your connection and refresh.</li>';
-    });
+loadCountries();
+
+async function loadCountries() {
+    let lastError;
+    for (const endpoint of COUNTRIES_ENDPOINTS) {
+        try {
+            const res = await fetch(endpoint);
+            if (!res.ok) throw new Error(`Countries request failed: ${res.status}`);
+            const data = await res.json();
+            allCountries = data;
+            displayCountries(data);
+            return;
+        } catch (err) {
+            lastError = err;
+        }
+    }
+
+    console.error(lastError);
+    countryList.innerHTML = '<li>Could not load countries. Please check your connection and refresh.</li>';
+}
+
+
 
 function displayCountries(countries) {
     countryList.innerHTML = '';
@@ -36,9 +50,16 @@ function displayCountries(countries) {
         li.innerHTML = `
             <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" width="50">
             <strong>${country.name.common}</strong> - ${country.region} - Population: ${country.population}
-            <button onclick="event.stopPropagation(); toggleFavorite('${country.name.common}')">★</button>
+            <button class="favorite-btn" type="button" aria-label="Favorite ${country.name.common}">★</button>
         `;
         li.onclick = () => showCountryDetails(country);
+
+        const favoriteButton = li.querySelector('.favorite-btn');
+        favoriteButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleFavorite(country.name.common);
+        });
+
         countryList.appendChild(li);
     });
 }
