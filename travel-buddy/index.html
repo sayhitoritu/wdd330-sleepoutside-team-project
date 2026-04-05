@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Buddy | Home</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Travel Buddy</h1>
+  </header>
+
+  <main>
+    <div class="hero">
+      <img src="../images/banner-sm.jpg" srcset="../images/banner-sm.jpg 500w, ../images/banner.jpg"
+        alt="image of a high mountain lake" />
+      <div class="logo logo--square">
+        <img src="../images/travelbuddy97.webp" alt="tent image for logo" />
+        <div>Sleep<span class="highlight">Outside</span></div>
+      </div>
+      <div class="mission">
+        <p>Our mission is to provide the opportunity to find a travel buddy person, for different trials.</p>
+      </div>
+    </div>
+
+    <section class="country-search">
+      <h2>Explore Countries</h2>
+      <input type="text" id="searchInput" placeholder="Search Countries..." />
+      <ul id="countryList"></ul>
+      <section id="countryDetails"></section>
+    </section>
+
+    <section class="categories">
+      <a href="product_listing/index.html?category=tents">
+        <img src="../images/noun_Tent_2517.svg" alt="Tents">
+        <h2>Tents</h2>
+      </a>
+      <a href="product_listing/index.html?category=backpacks">
+        <img src="../images/noun_Backpack_65884.svg" alt="Backpacks">
+        <h2>Backpacks</h2>
+      </a>
+      <a href="product_listing/index.html?category=sleeping-bags">
+        <img src="../images/noun_Backpack_2389275.svg" alt="Sleeping Bags">
+        <h2>Sleeping Bags</h2>
+      </a>
+      <a href="product_listing/index.html?category=hammocks">
+        <img src="../src/public/images/hammock-relaxing-svgrepo-com.svg" alt="Hammocks">
+        <h2>Hammocks</h2>
+      </a>
+    </section>
+
+    <section class="faq">
+      <h2>Common Questions</h2>
+      <div class="faq-item">
+        <button class="faq-question">What is Travel Buddy?</button>
+        <div class="faq-answer">Travel Buddy is a company dedicated to creating personalized companions, designing, and providing the highest quality companions for our travel experiences.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How long does companion take?</button>
+        <div class="faq-answer">Shipping typically takes 7 - 10 business days, depending on our volumes on track.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Are your products covered by some warranty if someone rejects of trial?</button>
+        <div class="faq-answer">Yes, all our products come with at least some warranties depending on defects or bad postures on our design not by use and wearing away.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy;2025 ⛺ Travel Buddy ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway Worldwide Online
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>
