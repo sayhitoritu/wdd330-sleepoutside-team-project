@@ -8,7 +8,7 @@ const COUNTRIES_ENDPOINTS = [
     'https://restcountries.com/v3.1/all?fields=name,flags,region,population,capital,languages,currencies',
     'https://restcountries.com/v3.1/all',
 ];
-
+const EXCHANGE_RATE_ACCESS_KEY = 'cur_live_wvALV4AslceDpzb1Xk0tFVyFS93w2nQ7LMBrroWJ';
 
 // Unsplash API setup (replace with your own access key)
 const UNSPLASH_ACCESS_KEY = 'om4lLj7mQC2CUgG0a8hl8D49CUAvhVfWGaNqq5pwY5w'; // <-- Replace with your Unsplash Access Key
@@ -97,25 +97,38 @@ function showCountryDetails(country) {
 // Fetch exchange rates from ExchangeRate API
 async function fetchExchangeRates(currencyCodes) {
     const exchangeDiv = document.getElementById('currencyExchange');
+
+    if (!EXCHANGE_RATE_ACCESS_KEY || EXCHANGE_RATE_ACCESS_KEY === 'cur_live_wvALV4AslceDpzb1Xk0tFVyFS93w2nQ7LMBrroWJ') {
+        exchangeDiv.innerHTML = '<p><em>Add your currency API key in main.js to load exchange rates.</em></p>';
+        return;
+    }
+
     try {
         const rates = [];
         for (const code of currencyCodes) {
-            const response = await fetch(`https://api.exchangerate.host/convert?from=USD&to=${code}&amount=1`);
+            const response = await fetch(`https://api.exchangerate.host/convert?access_key=${EXCHANGE_RATE_ACCESS_KEY}&from=USD&to=${code}&amount=1`);
+
+            if (!response.ok) {
+                throw new Error(`Exchange rate request failed: ${response.status}`);
+            }
+
             const data = await response.json();
 
-            if (data.success) {
+            if (data.success && typeof data.result === 'number') {
                 rates.push(`1 USD = ${data.result.toFixed(2)} ${code}`);
+            } else if (data.error) {
+                throw new Error(data.error.info || 'Exchange rate service error');
             }
         }
 
         if (rates.length > 0) {
             exchangeDiv.innerHTML = `<p><strong>Exchange Rates:</strong> ${rates.join(' | ')}</p>`;
         } else {
-            exchangeDiv.innerHTML = `<p><em>Exchange rates unavailable.</em></p>`;
+            exchangeDiv.innerHTML = '<p><em>Exchange rates unavailable.</em></p>';
         }
     } catch (err) {
         console.error('Exchange rate fetch failed:', err);
-        exchangeDiv.innerHTML = `<p><em>Could not load exchange rates.</em></p>`;
+        exchangeDiv.innerHTML = `<p><em>${err.message}</em></p>`;
     }
 }
 
