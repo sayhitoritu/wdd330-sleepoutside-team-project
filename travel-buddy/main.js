@@ -103,20 +103,21 @@ async function fetchExchangeRates(currencyCodes) {
     }
 
     try {
+        const codes = currencyCodes.join(',');
+        const response = await fetch(
+            `https://api.currencyapi.com/v3/latest?apikey=${EXCHANGE_RATE_ACCESS_KEY}&base_currency=USD&currencies=${codes}`
+        );
+
+        if (!response.ok) {
+            throw new Error(`Exchange rate request failed: ${response.status}`);
+        }
+
+        const data = await response.json();
         const rates = [];
+
         for (const code of currencyCodes) {
-            const response = await fetch(`https://api.exchangerate.host/convert?access_key=${EXCHANGE_RATE_ACCESS_KEY}&from=USD&to=${code}&amount=1`);
-
-            if (!response.ok) {
-                throw new Error(`Exchange rate request failed: ${response.status}`);
-            }
-
-            const data = await response.json();
-
-            if (data.success && typeof data.result === 'number') {
-                rates.push(`1 USD = ${data.result.toFixed(2)} ${code}`);
-            } else if (data.error) {
-                throw new Error(data.error.info || 'Exchange rate service error');
+            if (data.data && data.data[code]) {
+                rates.push(`1 USD = ${data.data[code].value.toFixed(2)} ${code}`);
             }
         }
 
