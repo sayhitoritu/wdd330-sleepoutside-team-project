@@ -1,4 +1,3 @@
-
 console.log("main.js loaded");
 
 const countryList = document.getElementById('countryList');
@@ -8,7 +7,7 @@ const COUNTRIES_ENDPOINTS = [
     'https://restcountries.com/v3.1/all?fields=name,flags,region,population,capital,languages,currencies',
     'https://restcountries.com/v3.1/all',
 ];
-const EXCHANGE_RATE_ACCESS_KEY = 'cur_live_wvALV4AslceDpzb1Xk0tFVyFS93w2nQ7LMBrroWJ';
+const EXCHANGE_RATE_ACCESS_KEY = 'cur_live_wvALV4AslceDpzb1Xk0tFVyFS93w2nQ7LMBrroWJ'; // <-- Replace with your actual Exchange Rate API key
 
 // Unsplash API setup (replace with your own access key)
 const UNSPLASH_ACCESS_KEY = 'om4lLj7mQC2CUgG0a8hl8D49CUAvhVfWGaNqq5pwY5w'; // <-- Replace with your Unsplash Access Key
