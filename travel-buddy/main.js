@@ -12,47 +12,6 @@ const EXCHANGE_RATE_ACCESS_KEY = 'cur_live_wvALV4AslceDpzb1Xk0tFVyFS93w2nQ7LMBrr
 // Unsplash API setup (replace with your own access key)
 const UNSPLASH_ACCESS_KEY = 'om4lLj7mQC2CUgG0a8hl8D49CUAvhVfWGaNqq5pwY5w'; // <-- Replace with your Unsplash Access Key
 
-// Top-level state
-
-const FAVORITES_KEY = 'travel-buddy-favorites';
-let favoriteCountries = new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]'));
-
-
-
-function saveFavorites() {
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favoriteCountries]));
-}
-
-function isFavorite(countryName) {
-    return favoriteCountries.has(countryName);
-}
-
-
-const starred = isFavorite(country.name.common);
-li.innerHTML = `
-    <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" width="50">
-    <strong>${country.name.common}</strong> - ${country.region} - Population: ${country.population}
-    <button class="favorite-btn" type="button" aria-label="Favorite ${country.name.common}">${starred ? '★' : '☆'} </button>
-`;
-
-let showFavoritesOnly = false;
-
-function getVisibleCountries() {
-    if (!showFavoritesOnly) return allCountries;
-    return allCountries.filter(c => favoriteCountries.has(c.name.common));
-}
-
-
-function toggleFavorite(countryName) {
-    if (favoriteCountries.has(countryName)) {
-        favoriteCountries.delete(countryName);
-
-    } else {
-        favoriteCountries.add(countryName);
-    }
-    saveFavorites();
-    displayCountries(allCountries);
-}
 
 // Fetch and display all countries on load
 let allCountries = [];
