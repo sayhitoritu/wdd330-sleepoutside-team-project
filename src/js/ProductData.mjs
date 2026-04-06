@@ -1,6 +1,4 @@
-async function convertToJson(res) {
-  const jsonResponse = await res.json();
-
+function convertToJson(res) {
   if (res.ok) {
     return jsonResponse;
   } else {
