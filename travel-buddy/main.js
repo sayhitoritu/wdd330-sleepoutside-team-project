@@ -12,6 +12,48 @@ const EXCHANGE_RATE_ACCESS_KEY = 'cur_live_wvALV4AslceDpzb1Xk0tFVyFS93w2nQ7LMBrr
 // Unsplash API setup (replace with your own access key)
 const UNSPLASH_ACCESS_KEY = 'om4lLj7mQC2CUgG0a8hl8D49CUAvhVfWGaNqq5pwY5w'; // <-- Replace with your Unsplash Access Key
 
+// Top-level state
+
+const FAVORITES_KEY = 'travel-buddy-favorites';
+let favoriteCountries = new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]'));
+
+
+
+function saveFavorites() {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favoriteCountries]));
+}
+
+function isFavorite(countryName) {
+    return favoriteCountries.has(countryName);
+}
+
+
+const starred = isFavorite(country.name.common);
+li.innerHTML = `
+    <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" width="50">
+    <strong>${country.name.common}</strong> - ${country.region} - Population: ${country.population}
+    <button class="favorite-btn" type="button" aria-label="Favorite ${country.name.common}">${starred ? '★' : '☆'} </button>
+`;
+
+let showFavoritesOnly = false;
+
+function getVisibleCountries() {
+    if (!showFavoritesOnly) return allCountries;
+    return allCountries.filter(c => favoriteCountries.has(c.name.common));
+}
+
+
+function toggleFavorite(countryName) {
+    if (favoriteCountries.has(countryName)) {
+        favoriteCountries.delete(countryName);
+
+    } else {
+        favoriteCountries.add(countryName);
+    }
+    saveFavorites();
+    displayCountries(allCountries);
+}
+
 // Fetch and display all countries on load
 let allCountries = [];
 countryList.innerHTML = '<li>Loading countries...</li>';
@@ -114,15 +156,44 @@ async function fetchExchangeRates(currencyCodes) {
 
         const data = await response.json();
         const rates = [];
+        const ratesByCode = {};
 
         for (const code of currencyCodes) {
             if (data.data && data.data[code]) {
-                rates.push(`1 USD = ${data.data[code].value.toFixed(2)} ${code}`);
+                const rate = data.data[code].value;
+                ratesByCode[code] = rate;
+                rates.push(`1 USD = ${rate.toFixed(2)} ${code}`);
             }
         }
 
         if (rates.length > 0) {
-            exchangeDiv.innerHTML = `<p><strong>Exchange Rates:</strong> ${rates.join(' | ')}</p>`;
+            exchangeDiv.innerHTML = `
+                <p><strong>Exchange Rates:</strong> ${rates.join(' | ')}</p>
+                <label for="usdAmountInput"><strong>USD Amount:</strong></label>
+                <input id="usdAmountInput" type="number" min="0" step="0.01" value="250">
+                <p id="convertedAmountOutput"></p>
+            `;
+
+            const amountInput = document.getElementById('usdAmountInput');
+            const convertedOutput = document.getElementById('convertedAmountOutput');
+
+            const updateConvertedAmounts = () => {
+                const amount = Number(amountInput.value);
+                if (Number.isNaN(amount) || amount < 0) {
+                    convertedOutput.innerHTML = '<em>Enter a valid amount.</em>';
+                    return;
+                }
+
+                const converted = Object.entries(ratesByCode).map(([code, rate]) => {
+                    const convertedAmount = amount * rate;
+                    return `${amount.toFixed(2)} USD = ${convertedAmount.toFixed(2)} ${code}`;
+            });
+
+                convertedOutput.innerHTML = `<strong>Converted:</strong> ${converted.join(' | ')}`;
+        };
+
+            amountInput.addEventListener('input', updateConvertedAmounts);
+            updateConvertedAmounts();
         } else {
             exchangeDiv.innerHTML = '<p><em>Exchange rates unavailable.</em></p>';
         }
@@ -162,3 +233,6 @@ document.querySelectorAll('.faq-question').forEach(btn => {
         item.classList.toggle('active');
     });
 });
+
+const response = await fetch('./travel-tips.json');
+const tips = await response.json();
