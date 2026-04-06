@@ -35,9 +35,34 @@ function displayRecipes(meals) {
 
     // CLICK WORKING HERE
     card.addEventListener("click", () => {
-      alert("You clicked: " + meal.strMeal);
+      window.location.href = `recipe.html?id=${meal.idMeal}`;
     });
+
+    const favBtn = document.createElement("button");
+    favBtn.textContent = "❤️ Save";
+    favBtn.classList.add("fav-btn");
+
+    favBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+      const alreadySaved = favorites.find(item => item.idMeal === meal.idMeal);
+
+      if (!alreadySaved) {
+        favorites.push(meal);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        favBtn.textContent = "✅ Saved";
+      }
+    });
+
+    card.appendChild(favBtn);
 
     results.appendChild(card);
   });
 }
+
+document.getElementById("viewFavoritesBtn").addEventListener("click", () => {
+  window.location.href = "favorites.html";
+});
+
