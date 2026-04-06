@@ -9,19 +9,19 @@
     "language": "Spanish",
     "currency": "PAB",
     "recommendedDays": 15,
-    "topActivity": "San Blas Islands"
+    "topActivity": "San Blas Islands, Panama Canal, Casco Viejo, Metropolitan Natural Park"
   },
   {
     "country": "Colombia",
     "city": "Cartagena",
     "bestSeason": "Dec-Mar",
-    "budgetLevel": "Budget-Friendly",
+    "budgetLevel": "Budget-Friendly or Low",
     "avgDailyCostUSD": 45,
-    "safetyLevel": "Moderate",
+    "safetyLevel": "Low to Moderate",
     "language": "Spanish",
     "currency": "COP",
     "recommendedDays": 15,
-    "topActivity": "Historic old town and beaches"
+    "topActivity": "Historic old town and beaches, Tayrona National Park, Rosario Islands, Walls of Cartagena"
   },
   {
     "country": "Costa Rica",
@@ -33,7 +33,7 @@
     "language": "Spanish",
     "currency": "CRC",
     "recommendedDays": 15,
-    "topActivity": "Rainforest and wildlife"
+    "topActivity": "Rainforest and wildlife, Arenal Volcano, Monteverde Cloud Forest, Manuel Antonio National Park"
   },
   {
     "country": "Australia",
@@ -45,7 +45,7 @@
     "language": "English",
     "currency": "AUD",
     "recommendedDays": 20,
-    "topActivity": "Opera House and beaches"
+    "topActivity": "Opera House and beaches, Great Barrier Reef, Sydney Harbour Bridge, Blue Mountains"
   },
   {
     "country": "Japan",
@@ -54,21 +54,21 @@
     "budgetLevel": "Medium-High",
     "avgDailyCostUSD": 110,
     "safetyLevel": "Very High",
-    "language": "Japanese",
+    "language": "Japanese, English",
     "currency": "JPY",
     "recommendedDays": 20,
-    "topActivity": "Cherry blossom festival"
+    "topActivity": "Cherry blossom festival, Mount Fuji, Kyoto temples, Tokyo Disneyland"
   },
   {
     "country": "Mexico",
     "city": "Mexico City",
     "bestSeason": "Oct-Apr",
-    "budgetLevel": "Budget-Friendly",
+    "budgetLevel": "Low",
     "avgDailyCostUSD": 55,
-    "safetyLevel": "Moderate",
+    "safetyLevel": "Risk to Low",
     "language": "Spanish",
     "currency": "MXN",
     "recommendedDays": 10,
-    "topActivity": "Teotihuacan pyramids"
+    "topActivity": "Teotihuacan pyramids, Frida Kahlo Museum, Chapultepec Park, Xochimilco"
   }
 ]
