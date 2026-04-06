@@ -17,6 +17,7 @@ const UNSPLASH_ACCESS_KEY = 'om4lLj7mQC2CUgG0a8hl8D49CUAvhVfWGaNqq5pwY5w'; // <-
 let allCountries = [];
 countryList.innerHTML = '<li>Loading countries...</li>';
 loadCountries();
+loadTravelTips();
 
 async function loadCountries() {
     let lastError;
@@ -193,5 +194,40 @@ document.querySelectorAll('.faq-question').forEach(btn => {
     });
 });
 
-const response = await fetch('./travel-tips.json');
-const tips = await response.json();
+// Load and render travel tips from local JSON as flip cards
+async function loadTravelTips() {
+    const tipsList = document.getElementById('tipsList');
+    if (!tipsList) return;
+
+    tipsList.innerHTML = '<li>Loading tips...</li>';
+
+    try {
+        const res = await fetch('./travel-tips.json');
+        if (!res.ok) throw new Error('Could not load travel-tips.json');
+        const tips = await res.json();
+
+        tipsList.innerHTML = tips.map(tip => `
+            <li class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>${tip.country}</h3>
+                        <p>${tip.city}</p>
+                        <p><strong>Best Season:</strong> ${tip.bestSeason}</p>
+                        <p><strong>Budget:</strong> ${tip.budgetLevel}</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p><strong>Avg/day:</strong> $${tip.avgDailyCostUSD}</p>
+                        <p><strong>Safety:</strong> ${tip.safetyLevel}</p>
+                        <p><strong>Language:</strong> ${tip.language}</p>
+                        <p><strong>Currency:</strong> ${tip.currency}</p>
+                        <p><strong>Days:</strong> ${tip.recommendedDays}</p>
+                        <p><strong>Top Activity:</strong> ${tip.topActivity}</p>
+                    </div>
+                </div>
+            </li>
+        `).join('');
+    } catch (err) {
+        tipsList.innerHTML = '<li>Could not load travel tips.</li>';
+        console.error('Travel tips failed:', err);
+    }
+}

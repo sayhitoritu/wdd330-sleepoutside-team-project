@@ -1,12 +1,74 @@
 [
-    {
-        "packingSuggestions": [
-            "Pack light and versatile clothing suitable for the destination's climate.",
-            "Bring a reusable water bottle to stay hydrated and reduce plastic waste.",
-            "Don't forget essential travel documents like your passport, visa, and travel insurance.",
-            "Consider packing a portable charger for your electronic devices.",
-            "Include a small first aid kit with basic medications and band-aids."
-            
-        ]
-    }
+  {
+    "country": "Panama",
+    "city": "Panama City",
+    "bestSeason": "Dec-Apr",
+    "budgetLevel": "Medium",
+    "avgDailyCostUSD": 85,
+    "safetyLevel": "Moderate",
+    "language": "Spanish",
+    "currency": "PAB",
+    "recommendedDays": 15,
+    "topActivity": "San Blas Islands"
+  },
+  {
+    "country": "Colombia",
+    "city": "Cartagena",
+    "bestSeason": "Dec-Mar",
+    "budgetLevel": "Budget-Friendly",
+    "avgDailyCostUSD": 45,
+    "safetyLevel": "Moderate",
+    "language": "Spanish",
+    "currency": "COP",
+    "recommendedDays": 15,
+    "topActivity": "Historic old town and beaches"
+  },
+  {
+    "country": "Costa Rica",
+    "city": "San José",
+    "bestSeason": "Dec-Apr",
+    "budgetLevel": "Medium-High",
+    "avgDailyCostUSD": 120,
+    "safetyLevel": "High",
+    "language": "Spanish",
+    "currency": "CRC",
+    "recommendedDays": 15,
+    "topActivity": "Rainforest and wildlife"
+  },
+  {
+    "country": "Australia",
+    "city": "Sydney",
+    "bestSeason": "Sep-Nov",
+    "budgetLevel": "High",
+    "avgDailyCostUSD": 150,
+    "safetyLevel": "Very High",
+    "language": "English",
+    "currency": "AUD",
+    "recommendedDays": 20,
+    "topActivity": "Opera House and beaches"
+  },
+  {
+    "country": "Japan",
+    "city": "Tokyo",
+    "bestSeason": "Mar-May",
+    "budgetLevel": "Medium-High",
+    "avgDailyCostUSD": 110,
+    "safetyLevel": "Very High",
+    "language": "Japanese",
+    "currency": "JPY",
+    "recommendedDays": 20,
+    "topActivity": "Cherry blossom festival"
+  },
+  {
+    "country": "Mexico",
+    "city": "Mexico City",
+    "bestSeason": "Oct-Apr",
+    "budgetLevel": "Budget-Friendly",
+    "avgDailyCostUSD": 55,
+    "safetyLevel": "Moderate",
+    "language": "Spanish",
+    "currency": "MXN",
+    "recommendedDays": 10,
+    "topActivity": "Teotihuacan pyramids"
+  }
 ]
