@@ -1,39 +1,39 @@
 [
   {
-    "country": "Panama",
-    "city": "Panama City",
+    "country": "France",
+    "city": "Paris",
     "bestSeason": "Dec-Apr",
     "budgetLevel": "Medium",
     "avgDailyCostUSD": 85,
-    "safetyLevel": "Moderate",
-    "language": "Spanish",
-    "currency": "PAB",
+    "safetyLevel": "Very - High",
+    "language": "French",
+    "currency": "EUR",
     "recommendedDays": 15,
-    "topActivity": "San Blas Islands, Panama Canal, Casco Viejo, Metropolitan Natural Park"
+    "topActivity": "Eiffel Tower, Louvre Museum, Notre-Dame Cathedral, Montmartre"
   },
   {
-    "country": "Colombia",
-    "city": "Cartagena",
-    "bestSeason": "Dec-Mar",
-    "budgetLevel": "Budget-Friendly or Low",
-    "avgDailyCostUSD": 45,
-    "safetyLevel": "Low to Moderate",
-    "language": "Spanish",
-    "currency": "COP",
+    "country": "Italy",
+    "city": "Rome",
+    "bestSeason": "Apr-Jun",
+    "budgetLevel": "Medium",
+    "avgDailyCostUSD": 90,
+    "safetyLevel": "Very - High",
+    "language": "Italian, English",
+    "currency": "EUR",
     "recommendedDays": 15,
-    "topActivity": "Historic old town and beaches, Tayrona National Park, Rosario Islands, Walls of Cartagena"
+    "topActivity": "Colosseum, Vatican City, Trevi Fountain, Pantheon"
   },
   {
-    "country": "Costa Rica",
-    "city": "San José",
+    "country": "Spain",
+    "city": "Barcelona",
     "bestSeason": "Dec-Apr",
-    "budgetLevel": "Medium-High",
+    "budgetLevel": "Low-Medium",
     "avgDailyCostUSD": 120,
-    "safetyLevel": "High",
-    "language": "Spanish",
-    "currency": "CRC",
+    "safetyLevel": "Medium - High",
+    "language": "Spanish, English",
+    "currency": "EUR",
     "recommendedDays": 15,
-    "topActivity": "Rainforest and wildlife, Arenal Volcano, Monteverde Cloud Forest, Manuel Antonio National Park"
+    "topActivity": "Sagrada Familia, Park Güell, La Rambla, Gothic Quarter"
   },
   {
     "country": "Australia",
@@ -41,7 +41,7 @@
     "bestSeason": "Sep-Nov",
     "budgetLevel": "High",
     "avgDailyCostUSD": 150,
-    "safetyLevel": "Very High",
+    "safetyLevel": "Very - High",
     "language": "English",
     "currency": "AUD",
     "recommendedDays": 20,
@@ -53,22 +53,48 @@
     "bestSeason": "Mar-May",
     "budgetLevel": "Medium-High",
     "avgDailyCostUSD": 110,
-    "safetyLevel": "Very High",
+    "safetyLevel": "Very - High",
     "language": "Japanese, English",
     "currency": "JPY",
     "recommendedDays": 20,
     "topActivity": "Cherry blossom festival, Mount Fuji, Kyoto temples, Tokyo Disneyland"
   },
   {
-    "country": "Mexico",
-    "city": "Mexico City",
-    "bestSeason": "Oct-Apr",
-    "budgetLevel": "Low",
-    "avgDailyCostUSD": 55,
-    "safetyLevel": "Risk to Low",
-    "language": "Spanish",
-    "currency": "MXN",
+    "country": "United States",
+    "city": "New York",
+    "bestSeason": "Apr-Jun",
+    "budgetLevel": "High",
+    "avgDailyCostUSD": 120,
+    "safetyLevel": "Medium - High",
+    "language": "English",
+    "currency": "USD",
     "recommendedDays": 10,
-    "topActivity": "Teotihuacan pyramids, Frida Kahlo Museum, Chapultepec Park, Xochimilco"
+    "topActivity": "Statue of Liberty, Central Park, Times Square, Broadway shows"
+
+
+  },
+  {
+    "country": "Thailand",
+    "city": "Bangkok",
+    "bestSeason": "Nov-Feb",
+    "budgetLevel": "Low",
+    "avgDailyCostUSD": 50,
+    "safetyLevel": "Medium",
+    "language": "Thai, English",
+    "currency": "THB",
+    "recommendedDays": 15,
+    "topActivity": "Grand Palace, Wat Arun, Chatuchak Market, Floating Markets"
+  },
+  {
+    "country": "United Kingdom",
+    "city": "London",
+    "bestSeason": "Apr-Jun",
+    "budgetLevel": "Very-High",
+    "avgDailyCostUSD": 120,
+    "safetyLevel": "Medium - High",
+    "language": "English",
+    "currency": "GBP",
+    "recommendedDays": 15,
+    "topActivity": "Buckingham Palace, Tower of London, London Eye, British Museum"
   }
 ]

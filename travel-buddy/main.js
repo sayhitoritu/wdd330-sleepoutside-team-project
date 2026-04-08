@@ -67,7 +67,7 @@ function displayCountries(countries) {
     });
 }
 
-// Combined search + region filter
+// Combined Search + Region Filter
 const regionSelect = document.getElementById('regionFilter');
 
 function applyFilters() {
