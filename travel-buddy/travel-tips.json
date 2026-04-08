@@ -2,50 +2,38 @@
   {
     "country": "France",
     "city": "Paris",
-    "bestSeason": "Dec-Apr",
-    "budgetLevel": "Medium",
-    "avgDailyCostUSD": 85,
-    "safetyLevel": "Very - High",
-    "language": "French",
+    "bestSeason": "Apr-Jun",
+    "budgetLevel": "High",
+    "avgDailyCostUSD": 170,
+    "safetyLevel": "High",
+    "language": "French, English",
     "currency": "EUR",
-    "recommendedDays": 15,
-    "topActivity": "Eiffel Tower, Louvre Museum, Notre-Dame Cathedral, Montmartre"
+    "recommendedDays": 7,
+    "topActivity": "Eiffel Tower, Louvre Museum, Seine River cruise, Montmartre"
   },
   {
     "country": "Italy",
     "city": "Rome",
     "bestSeason": "Apr-Jun",
-    "budgetLevel": "Medium",
-    "avgDailyCostUSD": 90,
-    "safetyLevel": "Very - High",
+    "budgetLevel": "Medium-High",
+    "avgDailyCostUSD": 140,
+    "safetyLevel": "High",
     "language": "Italian, English",
     "currency": "EUR",
-    "recommendedDays": 15,
-    "topActivity": "Colosseum, Vatican City, Trevi Fountain, Pantheon"
+    "recommendedDays": 8,
+    "topActivity": "Colosseum, Vatican City, Trevi Fountain, Roman Forum"
   },
   {
     "country": "Spain",
     "city": "Barcelona",
-    "bestSeason": "Dec-Apr",
-    "budgetLevel": "Low-Medium",
-    "avgDailyCostUSD": 120,
-    "safetyLevel": "Medium - High",
-    "language": "Spanish, English",
+    "bestSeason": "May-Jun",
+    "budgetLevel": "Medium",
+    "avgDailyCostUSD": 130,
+    "safetyLevel": "High",
+    "language": "Spanish, Catalan, English",
     "currency": "EUR",
-    "recommendedDays": 15,
-    "topActivity": "Sagrada Familia, Park Güell, La Rambla, Gothic Quarter"
-  },
-  {
-    "country": "Australia",
-    "city": "Sydney",
-    "bestSeason": "Sep-Nov",
-    "budgetLevel": "High",
-    "avgDailyCostUSD": 150,
-    "safetyLevel": "Very - High",
-    "language": "English",
-    "currency": "AUD",
-    "recommendedDays": 20,
-    "topActivity": "Opera House and beaches, Great Barrier Reef, Sydney Harbour Bridge, Blue Mountains"
+    "recommendedDays": 6,
+    "topActivity": "Sagrada Familia, Park Guell, La Rambla, Barceloneta Beach"
   },
   {
     "country": "Japan",
@@ -53,25 +41,23 @@
     "bestSeason": "Mar-May",
     "budgetLevel": "Medium-High",
     "avgDailyCostUSD": 110,
-    "safetyLevel": "Very - High",
+    "safetyLevel": "Very High",
     "language": "Japanese, English",
     "currency": "JPY",
-    "recommendedDays": 20,
-    "topActivity": "Cherry blossom festival, Mount Fuji, Kyoto temples, Tokyo Disneyland"
+    "recommendedDays": 9,
+    "topActivity": "Shibuya Crossing, Tokyo Skytree, Meiji Shrine, day trips to Mount Fuji"
   },
   {
     "country": "United States",
-    "city": "New York",
+    "city": "New York City",
     "bestSeason": "Apr-Jun",
     "budgetLevel": "High",
-    "avgDailyCostUSD": 120,
-    "safetyLevel": "Medium - High",
+    "avgDailyCostUSD": 180,
+    "safetyLevel": "Medium-High",
     "language": "English",
     "currency": "USD",
-    "recommendedDays": 10,
+    "recommendedDays": 6,
     "topActivity": "Statue of Liberty, Central Park, Times Square, Broadway shows"
-
-
   },
   {
     "country": "Thailand",
@@ -82,19 +68,31 @@
     "safetyLevel": "Medium",
     "language": "Thai, English",
     "currency": "THB",
-    "recommendedDays": 15,
-    "topActivity": "Grand Palace, Wat Arun, Chatuchak Market, Floating Markets"
+    "recommendedDays": 7,
+    "topActivity": "Grand Palace, Wat Arun, Chatuchak Market, floating markets"
   },
   {
     "country": "United Kingdom",
     "city": "London",
     "bestSeason": "Apr-Jun",
-    "budgetLevel": "Very-High",
-    "avgDailyCostUSD": 120,
-    "safetyLevel": "Medium - High",
+    "budgetLevel": "Very High",
+    "avgDailyCostUSD": 190,
+    "safetyLevel": "High",
     "language": "English",
     "currency": "GBP",
-    "recommendedDays": 15,
+    "recommendedDays": 6,
     "topActivity": "Buckingham Palace, Tower of London, London Eye, British Museum"
+  },
+  {
+    "country": "Australia",
+    "city": "Sydney",
+    "bestSeason": "Sep-Nov",
+    "budgetLevel": "High",
+    "avgDailyCostUSD": 150,
+    "safetyLevel": "Very High",
+    "language": "English",
+    "currency": "AUD",
+    "recommendedDays": 8,
+    "topActivity": "Sydney Opera House, Bondi Beach, Harbour Bridge, Blue Mountains"
   }
 ]
