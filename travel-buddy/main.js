@@ -67,15 +67,8 @@ function displayCountries(countries) {
     });
 }
 
-// Search/filter logic
-searchInput.addEventListener('input', applyFilters);
-regionSelect.addEventListener('change', applyFilters);
-
+// Combined search + region filter
 const regionSelect = document.getElementById('regionFilter');
-regionSelect.addEventListener('change', () =>{
-    const filtered = allCountries.filter(c => c.region === regionSelect.value || regionSelect.value === 'all');
-    displayCountries(filtered);
-});
 
 function applyFilters() {
     const query = searchInput.value.trim().toLowerCase();
@@ -86,8 +79,12 @@ function applyFilters() {
         const matchesRegion = region === 'all' || c.region === region;
         return matchesSearch && matchesRegion;
     });
+
     displayCountries(filtered);
 }
+
+searchInput.addEventListener('input', applyFilters);
+regionSelect.addEventListener('change', applyFilters);
 
 
 
