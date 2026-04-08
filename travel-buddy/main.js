@@ -68,17 +68,27 @@ function displayCountries(countries) {
 }
 
 // Search/filter logic
-searchInput.addEventListener('input', function() {
-    const query = this.value.trim().toLowerCase();
-    const filtered = allCountries.filter(c => c.name.common.toLowerCase().includes(query));
-    displayCountries(filtered);
-});
+searchInput.addEventListener('input', applyFilters);
+regionSelect.addEventListener('change', applyFilters);
 
 const regionSelect = document.getElementById('regionFilter');
 regionSelect.addEventListener('change', () =>{
     const filtered = allCountries.filter(c => c.region === regionSelect.value || regionSelect.value === 'all');
     displayCountries(filtered);
 });
+
+function applyFilters() {
+    const query = searchInput.value.trim().toLowerCase();
+    const region = regionSelect.value;
+
+    const filtered = allCountries.filter(c => {
+        const matchesSearch = c.name.common.toLowerCase().includes(query);
+        const matchesRegion = region === 'all' || c.region === region;
+        return matchesSearch && matchesRegion;
+    });
+    displayCountries(filtered);
+}
+
 
 
 // Show details and fetch Unsplash image
