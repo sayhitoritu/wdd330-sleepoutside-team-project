@@ -19,6 +19,8 @@ countryList.innerHTML = '<li>Loading countries...</li>';
 loadCountries();
 loadTravelTips();
 
+
+
 async function loadCountries() {
     let lastError;
     for (const endpoint of COUNTRIES_ENDPOINTS) {
@@ -71,6 +73,13 @@ searchInput.addEventListener('input', function() {
     const filtered = allCountries.filter(c => c.name.common.toLowerCase().includes(query));
     displayCountries(filtered);
 });
+
+const regionSelect = document.getElementById('regionFilter');
+regionSelect.addEventListener('change', () =>{
+    const filtered = allCountries.filter(c => c.region === regionSelect.value || regionSelect.value === 'all');
+    displayCountries(filtered);
+});
+
 
 // Show details and fetch Unsplash image
 function showCountryDetails(country) {
