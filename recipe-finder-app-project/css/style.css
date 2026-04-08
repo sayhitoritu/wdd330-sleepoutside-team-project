@@ -48,3 +48,113 @@ button {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+.recipe-page {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recipe-image {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+}
+
+.ingredients-list {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.instructions {
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+#backBtn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#backBtn:hover {
+  background-color: #388e3c;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+#favoriteBtn {
+  padding: 10px 20px;
+  background-color: gold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#favoriteBtn:hover {
+  background-color: orange;
+}
+
+.fav-btn {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.fav-btn:hover {
+  background: #e63956;
+}
+
+#viewFavoritesBtn {
+  margin-bottom: 20px;
+  padding: 10px 18px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#favoritesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.remove-btn {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
