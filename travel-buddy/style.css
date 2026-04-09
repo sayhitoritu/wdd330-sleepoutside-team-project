@@ -492,9 +492,22 @@ button {
   display: block;
 }
 
-.regionFilter:hover {
-  fill: #0984f7;
+
+
+#regionFilter:hover {
+  border-color: var(--primary-color);
 }
+
+.categories a:hover {
+  border-color: var(--primary-color);
+
+}
+
+.faq-question:hover {
+  border-color: var(--primary-color);
+}
+
+
 
 
 
