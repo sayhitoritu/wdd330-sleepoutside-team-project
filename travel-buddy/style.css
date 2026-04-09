@@ -491,14 +491,16 @@ button {
 }
 
 .faq-answer {
-  display: none;
+  max-height: 0; 
+  overflow: hidden;
+  transition: max-height 0.3s ease;
   padding: 1em;
   background: #f9f9f9;
   border-left: 3px solid #00796b;
 }
 
 .faq-item.active .faq-answer {
-  display: block;
+  max-height: 300px;
 }
 
 
