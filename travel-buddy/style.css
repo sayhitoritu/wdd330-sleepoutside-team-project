@@ -73,7 +73,7 @@ footer {
   margin-bottom: 1rem;
   transition: border-color 0.2s ease;
   background: #fff;
-  border-color: var(--light-grey);
+  border-color: var(--primary-color);
 }
 
 

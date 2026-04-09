@@ -87,6 +87,18 @@ searchInput.addEventListener('input', applyFilters);
 regionSelect.addEventListener('change', applyFilters);
 
 
+// Keydown event for Enter key on search input
+searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        const query = searchInput.value.trim().toLowerCase();
+        const match = allCountries.find(c =>
+            c.name.common.toLowerCase().includes(query)
+        );
+        if (match) showCountryDetails(match);
+    }
+});
+
+
 
 // Show details and fetch Unsplash image
 function showCountryDetails(country) {
