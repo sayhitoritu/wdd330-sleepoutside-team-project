@@ -492,6 +492,11 @@ button {
   display: block;
 }
 
+.regionFilter:hover {
+  fill: #0984f7;
+}
+
+
 
 
 @media screen and (min-width: 500px) {
