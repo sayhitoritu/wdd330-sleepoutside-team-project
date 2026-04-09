@@ -71,6 +71,14 @@ footer {
   border: 1px solid var(--light-grey);
   border-radius: 4px;
   margin-bottom: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+
+/* Step 2 - focus: only what changes on focus */
+.country-search input:focus,
+.products input:focus {
+  border-color: var(--primary-color);
 }
 
 #countryList {
