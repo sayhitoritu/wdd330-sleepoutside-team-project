@@ -48,6 +48,8 @@ function displayCountries(countries) {
         countryList.innerHTML = '<li>No countries found.</li>';
         return;
     }
+
+    
     countries.forEach(country => {
         const li = document.createElement('li');
         li.innerHTML = `
@@ -56,6 +58,14 @@ function displayCountries(countries) {
             <button class="favorite-btn" type="button" aria-label="Favorite ${country.name.common}">★</button>
         `;
         li.onclick = () => showCountryDetails(country);
+
+    li.addEventListener('mouseenter', () => {
+    li.style.background = '#f0f8ff';
+    });
+
+    li.addEventListener('mouseleave', () => {
+    li.style.background = 'white';
+    });
 
         const favoriteButton = li.querySelector('.favorite-btn');
         favoriteButton.addEventListener('click', (event) => {
@@ -99,13 +109,7 @@ searchInput.addEventListener('keydown', (event) => {
 });
 
 // Mouseenter event for country list items (event delegation)
-li.addEventListener('mouseenter', () => {
-    li.style.background = '#f0f8ff';
-});
 
-li.addEventListener('mouseleave', () => {
-    li.style.background = 'white';
-});
 
 
 
