@@ -98,6 +98,15 @@ searchInput.addEventListener('keydown', (event) => {
     }
 });
 
+// Mouseenter event for country list items (event delegation)
+li.addEventListener('mouseenter', () => {
+    li.style.background = '#f0f8ff';
+});
+
+li.addEventListener('mouseleave', () => {
+    li.style.background = 'white';
+});
+
 
 
 // Show details and fetch Unsplash image
