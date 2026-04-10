@@ -3,6 +3,7 @@ console.log("main.js loaded");
 const countryList = document.getElementById('countryList');
 const searchInput = document.getElementById('searchInput');
 const countryDetails = document.getElementById('countryDetails');
+const regionSelect = document.getElementById('regionFilter');
 const COUNTRIES_ENDPOINTS = [
     'https://restcountries.com/v3.1/all?fields=name,flags,region,population,capital,languages,currencies',
     'https://restcountries.com/v3.1/all',
@@ -11,6 +12,65 @@ const EXCHANGE_RATE_ACCESS_KEY = 'cur_live_wvALV4AslceDpzb1Xk0tFVyFS93w2nQ7LMBrr
 
 // Unsplash API setup (replace with your own access key)
 const UNSPLASH_ACCESS_KEY = 'om4lLj7mQC2CUgG0a8hl8D49CUAvhVfWGaNqq5pwY5w'; // <-- Replace with your Unsplash Access Key
+const STORAGE_KEYS = {
+    searchQuery: 'travelBuddy.searchQuery',
+    regionFilter: 'travelBuddy.regionFilter',
+    favorites: 'travelBuddy.favorites',
+    lastViewedCountry: 'travelBuddy.lastViewedCountry',
+    usdAmount: 'travelBuddy.usdAmount',
+};
+
+function initializeStorageDefaults() {
+    if (localStorage.getItem(STORAGE_KEYS.searchQuery) === null) {
+        localStorage.setItem(STORAGE_KEYS.searchQuery, '');
+    }
+
+    if (localStorage.getItem(STORAGE_KEYS.regionFilter) === null) {
+        localStorage.setItem(STORAGE_KEYS.regionFilter, 'all');
+    }
+
+    if (localStorage.getItem(STORAGE_KEYS.favorites) === null) {
+        setStoredJSON(STORAGE_KEYS.favorites, []);
+    }
+
+    if (localStorage.getItem(STORAGE_KEYS.lastViewedCountry) === null) {
+        localStorage.setItem(STORAGE_KEYS.lastViewedCountry, '');
+    }
+
+    if (localStorage.getItem(STORAGE_KEYS.usdAmount) == null) {
+        localStorage.setItem(STORAGE_KEYS.usdAmount, '250');
+    }
+
+    // Cleanup for an earlier typo key if it exists.
+    if (localStorage.getItem('travelBuddy.searchQuery') !== null) {
+        localStorage.removeItem('travelBuddy.searchQuery');
+    }
+}
+
+function getStoredJSON(key, fallback) {
+    try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+    } catch {
+        return fallback;
+    }
+}
+
+function setStoredJSON(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (err) {
+        console.warn(`Could not persist ${key} in localStorage`, err);
+    }
+}
+
+let favorites = new Set(getStoredJSON(STORAGE_KEYS.favorites, []));
+initializeStorageDefaults();
+
+searchInput.value = localStorage.getItem(STORAGE_KEYS.searchQuery) || '';
+regionSelect.value = localStorage.getItem(STORAGE_KEYS.regionFilter) || 'all';
+
+
 
 
 // Fetch and display all countries on load
@@ -29,7 +89,8 @@ async function loadCountries() {
             if (!res.ok) throw new Error(`Countries request failed: ${res.status}`);
             const data = await res.json();
             allCountries = data;
-            displayCountries(data);
+            applyFilters();
+            restoreLastViewedCountry();
             return;
         } catch (err) {
             lastError = err;
@@ -52,10 +113,12 @@ function displayCountries(countries) {
     
     countries.forEach(country => {
         const li = document.createElement('li');
+
+        const isFavorite = favorites.has(country.name.common);
         li.innerHTML = `
             <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" width="50">
             <strong>${country.name.common}</strong> - ${country.region} - Population: ${country.population}
-            <button class="favorite-btn" type="button" aria-label="Favorite ${country.name.common}">★</button>
+            <button class="favorite-btn" type="button" aria-label="Favorite ${country.name.common}">${isFavorite ? '★' : '☆'}</button>
         `;
         li.onclick = () => showCountryDetails(country);
 
@@ -78,11 +141,12 @@ function displayCountries(countries) {
 }
 
 // Combined Search + Region Filter
-const regionSelect = document.getElementById('regionFilter');
-
 function applyFilters() {
     const query = searchInput.value.trim().toLowerCase();
     const region = regionSelect.value;
+
+    localStorage.setItem(STORAGE_KEYS.searchQuery, searchInput.value);
+    localStorage.setItem(STORAGE_KEYS.regionFilter, region);
 
     const filtered = allCountries.filter(c => {
         const matchesSearch = c.name.common.toLowerCase().includes(query);
@@ -115,6 +179,8 @@ searchInput.addEventListener('keydown', (event) => {
 
 // Show details and fetch Unsplash image
 function showCountryDetails(country) {
+    localStorage.setItem(STORAGE_KEYS.lastViewedCountry, country.name.common);
+
     countryDetails.innerHTML = `<h2>${country.name.common}</h2>
         <img src="${country.flags.svg}" width="100">
         <p><strong>Capital:</strong> ${country.capital ? country.capital[0] : 'N/A'}</p>
@@ -177,6 +243,10 @@ async function fetchExchangeRates(currencyCodes) {
 
             const amountInput = document.getElementById('usdAmountInput');
             const convertedOutput = document.getElementById('convertedAmountOutput');
+            const savedAmount = localStorage.getItem(STORAGE_KEYS.usdAmount);
+            if (savedAmount !== null) {
+                amountInput.value = savedAmount;
+            }
 
             const updateConvertedAmounts = () => {
                 const amount = Number(amountInput.value);
@@ -184,6 +254,8 @@ async function fetchExchangeRates(currencyCodes) {
                     convertedOutput.innerHTML = '<em>Enter a valid amount.</em>';
                     return;
                 }
+
+                localStorage.setItem(STORAGE_KEYS.usdAmount, amountInput.value);
 
                 const converted = Object.entries(ratesByCode).map(([code, rate]) => {
                     const convertedAmount = amount * rate;
@@ -224,7 +296,14 @@ function fetchUnsplashImage(query) {
 }
 
 function toggleFavorite(name) {
-    alert('Favorite feature coming soon!');
+    if (favorites.has(name)) {
+        favorites.delete(name);
+    } else {
+        favorites.add(name);
+    }
+
+    setStoredJSON(STORAGE_KEYS.favorites, Array.from(favorites));
+    applyFilters();
 }
 
 // FAQ accordion
@@ -270,5 +349,15 @@ async function loadTravelTips() {
     } catch (err) {
         tipsList.innerHTML = '<li>Could not load travel tips.</li>';
         console.error('Travel tips failed:', err);
+    }
+}
+
+function restoreLastViewedCountry() {
+    const lastViewed = localStorage.getItem(STORAGE_KEYS.lastViewedCountry);
+    if (!lastViewed || !allCountries.length) return;
+
+    const match = allCountries.find(country => country.name.common === lastViewed);
+    if (match) {
+        showCountryDetails(match);
     }
 }
