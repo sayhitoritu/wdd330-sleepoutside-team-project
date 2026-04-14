@@ -1,18 +1,13 @@
 function convertToJson(res) {
   if (res.ok) {
-    return jsonResponse;
-  } else {
-    throw {
-      name: 'servicesError',
-      message: jsonResponse
-    };
+    return res.json();
   }
+  throw new Error(`servicesError: ${res.status} ${res.statusText}`);
 }
 
 export default class ProductData {
   constructor(category) {
     this.category = category;
-    this.path = `/json/${this.category}.json`;
     this.path = `/json/${this.category}.json`;
   }
 
@@ -26,7 +21,7 @@ export default class ProductData {
     } catch (err) {
       console.error("Error fetching products:", err);
 
-      throw err; // important so calling code knows error happened
+      throw err;
     }
   }
 

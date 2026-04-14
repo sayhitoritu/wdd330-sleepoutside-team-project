@@ -71,17 +71,16 @@ function renderComparisonPanel() {
   const panel = document.getElementById("comparisonPanel");
   const button = document.getElementById("compareButton");
   if (!panel) return;
-  const removeButtons = panel.querySelectorAll(".remove-compare");
-  removeButtons.forEach(btn => btn.removeEventListener("click", handleRemoveCompare));
+}
+
   if (comparedProducts.length === 0) {
     panel.innerHTML = "<p>No products selected for comparison.</p>";
     if (button) button.disabled = true;
     return;
   }
 
-}
+  const table = `<table class="comparison-table">
 
-let table = `<table class="comparison-table">
 
   <tr>
     <th>Feature</th>
@@ -93,7 +92,13 @@ let table = `<table class="comparison-table">
     ${comparedProducts.map(p => `<td>${p.Name || ""}</td>`).join("")}
   </tr>
 
-  <tr>
+  panel.innerHTML = table;
+  if(button) button.disabled = comparedProducts.length < 2;
+
+  panel.querySelectorAll(".remove-comparison").forEach((btn) => {
+    btn.addEventListener("click", handleRemoveCompare);})
+}
+
   <td>Brand</td>
   ${comparedProducts.map(p => `<td>${p.Brand?.Name || ""}</td>`).join("")}
   </tr>
