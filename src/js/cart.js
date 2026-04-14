@@ -8,6 +8,15 @@ function formatCurrency(amount) {
 
 
 function updateOrderSummary(cartItems) {
+  console.table(
+    cartItems.map(item => ({
+      name: item.Name,
+      rawPrice: item.FinalPrice,
+      parsedPrice: Number(item.FinalPrice),
+      qty: item.quantity,
+    }))
+  );
+  
   const subtotalEl = document.getElementById("cart-subtotal");
   const shippingEl = document.getElementById("cart-shipping");
   const taxEl = document.getElementById("cart-tax");
