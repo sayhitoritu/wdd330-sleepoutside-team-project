@@ -73,6 +73,8 @@ regionSelect.value = localStorage.getItem(STORAGE_KEYS.regionFilter) || 'all';
 
 
 
+
+
 // Fetch and display all countries on load
 let allCountries = [];
 countryList.innerHTML = '<li>Loading countries...</li>';

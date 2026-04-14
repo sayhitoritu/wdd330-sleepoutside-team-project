@@ -8,7 +8,7 @@ function formatCurrency(amount) {
 
 
 function updateOrderSummary(cartItems) {
-  const subtotalEL = document.getElementById("cart-subtotal");
+  const subtotalEl = document.getElementById("cart-subtotal");
   const shippingEl = document.getElementById("cart-shipping");
   const taxEl = document.getElementById("cart-tax");
   const totalEl = document.getElementById("cart-total");
