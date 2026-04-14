@@ -1,10 +1,54 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
+const TAX_RATE = 0.06;
+
+function formatCurrency(amount) {
+  return `$${amount.toFixed(2)}`;
+}
+
+
+function updateOrderSummary(cartItems) {
+  const subtotalEL = document.getElementById("cart-subtotal");
+  const shippingEl = document.getElementById("cart-shipping");
+  const taxEl = document.getElementById("cart-tax");
+  const totalEl = document.getElementById("cart-total");
+
+
+  if (!subtotalEl || !shippingEl || !taxEl || !totalEl) return;
+
+  const subtotal = cartItems.reduce((sum, item) => {
+
+    const price = Number(item.FinalPrice) || 0;
+    const quantity = Number(item.quantity) || 1;
+    return sum + price * quantity;
+  }, 0);
+
+
+  const shipping = 0;
+  const tax = subtotal * TAX_RATE;
+  const total = subtotal + shipping + tax;
+
+  subtotalEl.textContent = formatCurrency(subtotal);
+  shippingEl.textContent = formatCurrency(shipping);
+  taxEl.textContent = formatCurrency(tax);
+  totalEl.textContent = formatCurrency(total);
+}
+
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
+  const listElement = document.querySelector(".product-list");
+  const emptyMessage = document.getElementById("cart-empty");
+
+  if (!listElement) return;
 
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  listElement.innerHTML = htmlItems.join("");
+
+  if (emptyMessage) {
+    emptyMessage.hidden = cartItems.length > 0;
+  }
+
+  updateOrderSummary(cartItems);
 }
 
 function cartItemTemplate(item) {
@@ -44,7 +88,7 @@ function updateQuantity(id, change) {
   let cart = getLocalStorage("so-cart") || [];
 
   cart = cart.map((item) => {
-    if (item.Id === id) {
+    if (String(item.Id) === String(id)) {
       item.quantity = (item.quantity || 1) + change;
       if (item.quantity < 1) item.quantity = 1;
     }
@@ -57,10 +101,10 @@ function updateQuantity(id, change) {
 
 renderCartContents();
 
-const checkoutBtn = document.querySelector('#goToCheckout');
+const checkoutBtn = document.querySelector('#checkout-btn');
 
 if (checkoutBtn) {
   checkoutBtn.addEventListener('click', () => {
-    window.location.href = '/checkout/index.html';
+    window.location.href = "/checkout/index.html";
   });
 }

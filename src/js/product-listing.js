@@ -11,12 +11,13 @@ if (params.has("category")) {
 }
 
 function addToCart(cart, item) {
+
   // Check if item already exists in cart
   const existingItem = cart.find(cartItem => cartItem.id === item.id);
 
   if (existingItem) {
     // If found, increment its quantity
-    existingItem.quantity += 1;
+  existingItem.quantity += 1;
   } else {
     // Otherwise, add it with quantity = 1
     cart.push({ ...item, quantity: 1 });
@@ -25,14 +26,15 @@ function addToCart(cart, item) {
   return cart;
 }
 
-// Hook into Add to Cart buttons
+
+// Hook into a CART BUTTONS
 function handleAddToCart(item) {
   let cart = getLocalStorage("so-cart") || [];
   cart = addToCart(cart, item);
   setLocalStorage("so-cart", cart);
 
   // Example: update cart count badge
-  const cartCount = document.getElementById("cart-count");
+  const cartCount = document.getElementById("cart-Count");
   if (cartCount) {
     cartCount.textContent = cart.reduce((sum, p) => sum + p.quantity, 0);
   }
