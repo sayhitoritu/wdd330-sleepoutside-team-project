@@ -99,7 +99,34 @@
       <input type="text" id="searchInput" placeholder="Search products..." />
       <ul class="product-list"></ul>
     </section>
+    <section class="api-playground" aria-labelledby="api-playground-title">
+      <h2 id="api-playground-title">API Playground</h2>
+      <p>Practice GET, POST, PATCH, PUT, and DELETE with local product records.</p>
+
+      <div class="api-controls">
+        <label for="api-base-url">Base URL</label>
+        <input
+          id="api-base-url"
+          type="text"
+          value="http://localhost:3000/products"
+        />
+
+        <label for="api-resource-id">Resource ID (for PATCH, PUT, DELETE)</label>
+        <input id="api-resource-id" type="number" min="1" value="1" />
+      </div>
+
+      <div class="api-actions">
+        <button type="button" id="btn-get">GET</button>
+        <button type="button" id="btn-post">POST</button>
+        <button type="button" id="btn-patch">PATCH</button>
+        <button type="button" id="btn-put">PUT</button>
+        <button type="button" id="btn-delete">DELETE</button>
+      </div>
+
+      <pre id="api-result" class="api-result">Click a method button to run a request.</pre>
+    </section>
     <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/http-methods-demo.js"></script>
   </main>
   <footer>
     &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway

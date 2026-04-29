@@ -71,6 +71,10 @@ const productList = new ProductList("tents", dataSource, element);
 
 productList.init();
 
+window.addEventListener("products:changed", () => {
+  productList.init();
+});
+
 if (searchInput) {
 	searchInput.addEventListener("keyup", () => {
 		const searchValue = searchInput.value.toLowerCase();
